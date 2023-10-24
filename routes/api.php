@@ -16,11 +16,12 @@ use App\Http\Controllers\UsuarioController;
 |
 */
 
+//RUTAS DE PRUEBA
 // Route::get('/saludo', 'PruebaController@saludar');
-
 Route::get('saludo', [PruebaController::class, 'saludar']);
 Route::post('saludo', [PruebaController::class, 'despedir']);
 Route::get('saludo/{mensaje}', [PruebaController::class, 'conversar']);
 
+//RUTAS
 Route::post('usuario/nuevo', [UsuarioController::class, 'crear']);
 Route::put('usuario/{id}', [UsuarioController::class, 'actualizar']);
