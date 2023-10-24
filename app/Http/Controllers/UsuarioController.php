@@ -6,10 +6,11 @@ use Illuminate\Http\Request;
 
 class UsuarioController extends Controller
 {
-    public function crear(Request $request) {
-        echo $request->mensaje;
+    public function store(Request $request){
+        return "Usuario creado";
     }
-    public function actualizar(Request $request) {
-        echo $request->mensaje;
+
+    public function update(Request $request){
+        return "Usuario actualizado con id: $request->id";
     }
 }
