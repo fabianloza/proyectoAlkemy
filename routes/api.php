@@ -31,7 +31,8 @@ Route::put('/categorias/{id}', 'CategoriaController@update');
 
 Route::get('/metodos-pago', 'MetodoPagoController@index');
 Route::post('/metodos-pago', 'MetodoPagoController@store');
-Route::put('/metodos-pago/{id}', 'MetodoPagoController@update');
+Route::put('/metodos-pago', 'MetodoPagoController@update');
+
 
 Route::get('/carritos', 'CarritoController@index');
 Route::get('/carritos/{id}', 'CarritoController@show');
