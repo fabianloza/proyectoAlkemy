@@ -2,23 +2,30 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Categoria;
 use Illuminate\Http\Request;
 
 class CategoriaController extends Controller
 {
     public function index(){
-        return "Listado de categorias";
+        $categorias = Categoria::all();
+        return response()->json(array('data' => $categorias));
     }
 
     public function show(Request $request){
-        return "Categoria con id: $request->id";
+        $categoria = Categoria::find($request->id);
+        return response()->json(array('data' => $categoria));
     }
 
     public function store(Request $request){
-        return "Categoria creada";
+        $nuevaCategoria = new Categoria();
+        $nuevaCategoria->nombre = $request->nombre;
+        $nuevaCategoria->save();
     }
 
     public function update(Request $request){
-        return "Categoria actualizada con id: $request->id";
+        $categoria = Categoria::find($request->id);
+        $categoria->nombre = $request->nombre;
+        $categoria->save();
     }
 }
