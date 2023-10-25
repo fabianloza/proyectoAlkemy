@@ -43,6 +43,10 @@ Route::get('/ordenes/{id}', 'OrdenController@show');
 Route::post('/ordenes', 'OrdenController@store');
 Route::put('/ordenes/{id}', 'OrdenController@update');
 
+Route::get('/stock/{id}', 'StockController@show');
+Route::put('/stock/{id}', 'StockController@update');
+Route::post('/stock', 'StockController@store');
+
 //Mismas rutas con esta sintaxis Route::post('/saludo/{mensaje}', [PruebaController::class, 'despedir']);
 /*
 Route::post('/usuarios', [UsuarioController::class, 'store']);

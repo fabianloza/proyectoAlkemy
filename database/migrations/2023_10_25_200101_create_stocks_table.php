@@ -11,11 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('ordenes', function (Blueprint $table) {
+        Schema::create('stocks', function (Blueprint $table) {
             $table->id();
-            $table->integer('carrito_id')->notNullable();
-            $table->integer('metodo_pago_id')->notNullable();
-            $table->date('fecha_creacion')->notNullable();
+            $table->integer('producto_id')->notNullable();
+            $table->integer('cantidad')->notNullable()->positive();
             $table->timestamps();
         });
     }
@@ -25,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('ordenes');
+        Schema::dropIfExists('stocks');
     }
 };

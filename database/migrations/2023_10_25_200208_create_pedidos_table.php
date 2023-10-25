@@ -11,11 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('ordenes', function (Blueprint $table) {
+        Schema::create('pedidos', function (Blueprint $table) {
             $table->id();
-            $table->integer('carrito_id')->notNullable();
-            $table->integer('metodo_pago_id')->notNullable();
-            $table->date('fecha_creacion')->notNullable();
+            //$table->foreignId('producto_id')->constrained();
+            $table->integer('producto_id')->notNullable();
+            $table->foreignId('carrito_id')->constrained();
+            $table->integer('cantidad')->notNullable()->positive();
+            $table->double('importe')->notNullable()->positive();
             $table->timestamps();
         });
     }
@@ -25,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('ordenes');
+        Schema::dropIfExists('pedidos');
     }
 };
