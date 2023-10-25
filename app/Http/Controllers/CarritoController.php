@@ -2,24 +2,39 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Carrito;
 use Illuminate\Http\Request;
 
 class CarritoController extends Controller
 {
     public function index(){
-        return "Listado de carritos";
+        $carritos = Carrito::all();
+        return response()->json(['Carritos' => $carritos]);
+
+        //return "Listado de carritos";
     }
 
     public function show(Request $request){
         return "Carrito con id: $request->id";
     }
 
+    //Metodo para crear un Carrito
     public function store(Request $request){
+        $carrito = new Carrito();
+        $carrito->importe = $request->importe;
+        $carrito->finalizado = $request->finalizado;
+        $carrito->save();
+
+        return response()->json(['respuesta' => 'Carrito creado correctamente']);
         return "Carrito creado";
     }
 
-    public function update(Request $request){
-        return "Carrito actualizado con id: $request->id";
+    //Metodo para actualizar un carrito
+    public function update(Request $request, $id){
+        $carrito = Carrito::find($id);
+        $carrito->update($request->all());
+        $carrito->save();
+        return response()->json(['respuesta' => $carrito]);
     }
 
     public function destroy(Request $request){
