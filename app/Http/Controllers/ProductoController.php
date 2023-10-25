@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\productos;
 use Illuminate\Http\Request;
+
 
 class ProductoController extends Controller
 {
     public function index(){
-        return "Listado de productos";
+        $productos = productos::all();
+        return response()->json($productos, 200);
     }
 
     public function show(Request $request){
