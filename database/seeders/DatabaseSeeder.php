@@ -13,8 +13,9 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $this->call(CategoriaSeeder::class);
-        $this->call(OrdenSeeder::class);
-        $this->call(StockSeeder::class);
+        $this->call(ProductosSeeder::class);
+        //$this->call(OrdenSeeder::class);
+        //$this->call(StockSeeder::class);
         // \App\Models\User::factory(10)->create();
 
         // \App\Models\User::factory()->create([
