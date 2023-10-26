@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Carrito;
+use App\Models\metodoPago;
 use App\Models\Orden;
 use Illuminate\Http\Request;
 
@@ -13,10 +15,11 @@ class OrdenController extends Controller
     }
 
     public function store(Request $request){
+        $carrito = Carrito::find($request->carrito_id);
+        $metodoPago = metodoPago::find($request->metodo_pago_id);
         $nuevaOrden = new Orden();
-        $nuevaOrden->carrito_id = $request->carrito_id;
-        $nuevaOrden->metodo_pago_id = $request->metodo_pago_id;
-        $nuevaOrden->fecha_creacion = now();
+        $nuevaOrden->carrito()->associate($carrito);
+        $nuevaOrden->metodo_pago()->associate($metodoPago);
         $nuevaOrden->save();
     }
 

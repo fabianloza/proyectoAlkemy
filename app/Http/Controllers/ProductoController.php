@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\productos;
+use App\Models\Categoria;
+use App\Models\Producto;
 use Illuminate\Http\Request;
 
 
 class ProductoController extends Controller
 {
     public function index(){
-        $productos = productos::all();
+        $productos = Producto::all();
         return response()->json($productos, 200);
     }
 
@@ -18,7 +19,14 @@ class ProductoController extends Controller
     }
 
     public function store(Request $request){
-        return "Producto creado";
+        $categoria = Categoria::find($request->categoria_id);
+        $nuevoProducto = new Producto();
+        $nuevoProducto->nombre = $request->nombre;
+        $nuevoProducto->precio = $request->precio;
+        $nuevoProducto->imagen = $request->imagen;
+        $nuevoProducto->descripcion = $request->descripcion;
+        $nuevoProducto->categoria()->associate($categoria);
+        $nuevoProducto->save();
     }
 
     public function update(Request $request){

@@ -13,9 +13,10 @@ return new class extends Migration
     {
         Schema::create('ordenes', function (Blueprint $table) {
             $table->id();
-            $table->integer('carrito_id')->notNullable();
-            $table->integer('metodo_pago_id')->notNullable();
-            $table->date('fecha_creacion')->notNullable();
+            //$table->integer('carrito_id')->notNullable();
+            $table->foreignId('carrito_id')->constrained('carritos');
+            //$table->integer('metodo_pago_id')->notNullable();
+            $table->foreignId('metodo_pago_id')->constrained('metodo_pagos');
             $table->timestamps();
         });
     }

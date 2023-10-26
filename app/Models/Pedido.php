@@ -19,4 +19,12 @@ class Pedido extends Model
         'created_at',
         'updated_at',
     ];
+
+    public function carrito(){
+        return $this->belongsTo(Carrito::class);
+    }
+
+    public function producto(){
+        return $this->belongsTo(Producto::class);
+    }
 }

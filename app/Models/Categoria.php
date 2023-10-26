@@ -14,4 +14,8 @@ class Categoria extends Model
     protected $fillable = ['nombre'];
     protected $hidden = ['created_at', 'updated_at'];
     protected $guarded = ['id'];
+
+    public function productos(){
+        return $this->hasMany(Producto::class);
+    }
 }

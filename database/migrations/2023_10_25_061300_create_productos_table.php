@@ -17,11 +17,8 @@ return new class extends Migration
             $table->double('precio');
             $table->string('imagen', 255)->nullable();
             $table->string('descripcion')->nullable();
-            $table->unsignedBigInteger('categoria_id');
+            $table->foreignId('categoria_id')->constrained('categorias');
             $table->boolean('habilitado')->default(true);
-            
-          //  $table->foreign('categoria_id')->references('id')->on('categorias');      clave foranea relaciones entre tablas 
-            
             $table->timestamps();
 
         });

@@ -14,4 +14,12 @@ class Orden extends Model
     protected $fillable = ['carrito_id', 'metodo_pago_id', 'fecha_creacion'];
     protected $hidden = ['created_at', 'updated_at'];
     protected $guarded = ['id'];
+
+    public function carrito(){
+        return $this->belongsTo(Carrito::class);
+    }
+
+    public function metodo_pago(){
+        return $this->belongsTo(MetodoPago::class);
+    }
 }

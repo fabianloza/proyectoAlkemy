@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('pedidos', function (Blueprint $table) {
             $table->id();
             //$table->foreignId('producto_id')->constrained();
-            $table->integer('producto_id')->notNullable();
-            $table->foreignId('carrito_id')->constrained();
+            $table->foreignId('producto_id')->constrained('productos');
+            $table->foreignId('carrito_id')->constrained('carritos');
             $table->integer('cantidad')->notNullable()->positive();
             $table->double('importe')->notNullable()->positive();
             $table->timestamps();

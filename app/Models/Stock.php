@@ -17,4 +17,8 @@ class Stock extends Model
         'created_at',
         'updated_at',
     ];
+
+    public function producto(){
+        return $this->belongsTo(Producto::class);
+    }
 }
