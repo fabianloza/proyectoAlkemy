@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Carrito;
+use App\Models\Usuario;
 use Illuminate\Http\Request;
 
 class CarritoController extends Controller
@@ -20,9 +21,9 @@ class CarritoController extends Controller
 
     //Metodo para crear un Carrito
     public function store(Request $request){
+        $user = Usuario::find($request->usuario_id);
         $carrito = new Carrito();
-        $carrito->importe = $request->importe;
-        $carrito->finalizado = $request->finalizado;
+        $user->carritos()->save($carrito);
         $carrito->save();
 
         return response()->json(['respuesta' => 'Carrito creado correctamente']);

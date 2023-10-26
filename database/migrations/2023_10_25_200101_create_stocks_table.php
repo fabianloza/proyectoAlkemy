@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('stocks', function (Blueprint $table) {
             $table->id();
-            $table->integer('producto_id')->notNullable();
+            //$table->integer('producto_id')->notNullable();
+            $table->foreignId('producto_id')->constrained('productos');
             $table->integer('cantidad')->notNullable()->positive();
             $table->timestamps();
         });

@@ -48,33 +48,6 @@ Route::get('/stock/{id}', 'StockController@show');
 Route::put('/stock/{id}', 'StockController@update');
 Route::post('/stock', 'StockController@store');
 
-//Mismas rutas con esta sintaxis Route::post('/saludo/{mensaje}', [PruebaController::class, 'despedir']);
-/*
-Route::post('/usuarios', [UsuarioController::class, 'store']);
-Route::put('/usuarios/{id}', [UsuarioController::class, 'update']);
-
-Route::get('/productos', [ProductoController::class, 'index']);
-Route::get('/productos/{id}', [ProductoController::class, 'show']);
-Route::post('/productos', [ProductoController::class, 'store']);
-Route::put('/productos/{id}', [ProductoController::class, 'update']);
-Route::delete('/productos/{id}', [ProductoController::class, 'destroy']);
-
-Route::get('/categorias', [CategoriaController::class, 'index']);
-Route::get('/categorias/{id}', [CategoriaController::class, 'show']);
-Route::post('/categorias', [CategoriaController::class, 'store']);
-Route::put('/categorias/{id}', [CategoriaController::class, 'update']);
-
-Route::get('/metodos-pago', [MetodoPagoController::class, 'index']);
-Route::post('/metodos-pago', [MetodoPagoController::class, 'store']);
-Route::put('/metodos-pago/{id}', [MetodoPagoController::class, 'update']);
-
-Route::get('/carritos', [CarritoController::class, 'index']);
-Route::get('/carritos/{id}', [CarritoController::class, 'show']);
-Route::post('/carritos', [CarritoController::class, 'store']);
-Route::put('/carritos/{id}', [CarritoController::class, 'update']);
-Route::delete('/carritos/{id}', [CarritoController::class, 'destroy']);
-
-Route::get('/ordenes/{id}', [OrdenController::class, 'show']);
-Route::post('/ordenes', [OrdenController::class, 'store']);
-Route::put('/ordenes/{id}', [OrdenController::class, 'update']);
-*/
+Route::get('/pedidos', 'PedidoController@index');
+Route::get('/pedidos/{id}', 'PedidoController@show');
+Route::post('/pedidos', 'PedidoController@store');
