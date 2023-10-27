@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
+Route::post('/login', 'AuthController@login');
 
 Route::post('/usuarios', 'UsuarioController@store');
 Route::put('/usuarios/{id}', 'UsuarioController@update');
