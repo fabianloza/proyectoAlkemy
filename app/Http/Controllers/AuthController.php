@@ -12,7 +12,7 @@ use Laravel\Prompts\Key;
 class AuthController extends Controller
 {
     public function login(Request $request){
-        $request->validate([
+        $credenciales = $request->validate([
             'email' => 'required|email|exists:usuarios,email',
             'password' => 'required'
         ]);
