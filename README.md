@@ -11,7 +11,7 @@ Prueba simple para probar la api
 2. /carritos para crear un carrito con el usuario logueado
 3. /pedidos para crear un pedido al carrito actual con el producto elegido
 4. agregar pedidos y verificar que el importe del carrito sea correcto
-5. /carritos/listado para ver todos los productos
+5. /carritos/productos para ver todos los productos
 6. /ordenes para generar una orden con el carrito del usuario actual
 7. Verificar que el carrito de la orden se encuentra finalizado
 
