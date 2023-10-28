@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             //$table->integer('producto_id')->notNullable();
             $table->foreignId('producto_id')->constrained('productos');
-            $table->integer('cantidad')->notNullable()->positive();
+            $table->integer('cantidad')->default(0)->positive();
             $table->timestamps();
         });
     }

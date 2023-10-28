@@ -5,40 +5,66 @@ namespace App\Http\Controllers;
 use App\Models\Carrito;
 use App\Models\Usuario;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CarritoController extends Controller
 {
-    public function index(){
-        $carritos = Carrito::all();
-        return response()->json(['Carritos' => $carritos]);
+    private $no_carrito_mensaje = 'Error al recuperar carrito: El usuario no cuenta con un carrito creado';
 
-        //return "Listado de carritos";
+    public function show(){
+        $carrito = Carrito::carritoUsuarioActual();
+        if($carrito == null){return response()->badRequest([], $this->no_carrito_mensaje);}
+        return response()->ok($carrito);
     }
 
-    public function show(Request $request){
-        return "Carrito con id: $request->id";
-    }
-
-    //Metodo para crear un Carrito
-    public function store(Request $request){
-        $user = Usuario::find($request->usuario_id);
+    public function store(){
+        $usuario = Usuario::find(Auth::user()->id);
+        $carrito = $usuario->carritos()->where('finalizado', false)->first();
+        if($carrito != null)
+        {return
+            response()
+            ->badRequest([], 'Error al intentar crear un carrito: El usuario ya cuenta con un carrito creado');
+        }
+        
         $carrito = new Carrito();
-        $user->carritos()->save($carrito);
+        $carrito->usuario()->associate($usuario);
         $carrito->save();
-
-        return response()->json(['respuesta' => 'Carrito creado correctamente']);
-        return "Carrito creado";
+        return response()->created($carrito);
     }
 
-    //Metodo para actualizar un carrito
-    public function update(Request $request, $id){
-        $carrito = Carrito::find($id);
-        $carrito->update($request->all());
+    public function destroy(){
+        $carrito = Carrito::carritoUsuarioActual();
+        if($carrito == null){return response()->badRequest([], $this->no_carrito_mensaje);}
+        $carrito->finalizado = true;
         $carrito->save();
-        return response()->json(['respuesta' => $carrito]);
+        return response()->ok($carrito);
     }
 
-    public function destroy(Request $request){
-        return "Carrito eliminado con id: $request->id";
+    public function listadoDeProductos(){
+        //Muestra los productos del carrito del usuario logueado
+        $carrito = Carrito::carritoUsuarioActual();
+        if($carrito == null){return response()->badRequest([], $this->no_carrito_mensaje);}
+        $pedidos = $carrito->pedidos()->with('producto')->get();
+        //Formato de respuesta
+        $response = [];
+        foreach ($pedidos as $pedido) {
+            $response[] = [
+                'id' => $pedido->producto->id,
+                'nombre' => $pedido->producto->nombre,
+                'precio' => $pedido->producto->precio,
+                'cantidad' => $pedido->cantidad,
+                'importe' => $pedido->importe
+            ];
+        }
+        return response()->ok($response);
+    }
+
+    public function vaciarCarrito(){
+        $carrito = Carrito::carritoUsuarioActual();
+        if($carrito == null){return response()->badRequest([], $this->no_carrito_mensaje);}
+        $carrito->pedidos()->delete();
+        $carrito->importe = 0;
+        $carrito->save();
+        return response()->ok($carrito);
     }
 }

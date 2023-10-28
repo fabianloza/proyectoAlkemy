@@ -27,6 +27,8 @@ class Producto extends Model
         'updated_at',
     ];
 
+    protected $with = [ 'stock', 'categoria' ];
+
     public function pedidos(){
         return $this->hasMany(Pedido::class);
     }

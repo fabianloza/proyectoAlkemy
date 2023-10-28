@@ -15,19 +15,19 @@ class StockSeeder extends Seeder
     {
         DB::table('stocks')->insert([
             'producto_id' => 1,
-            'cantidad' => 11,
+            'cantidad' => 2,
             'created_at' => '2021-10-25 20:01:01',
             'updated_at' => '2021-10-25 20:01:01',
         ]);
         DB::table('stocks')->insert([
             'producto_id' => 2,
-            'cantidad' => 12,
+            'cantidad' => 5,
             'created_at' => '2021-10-25 20:01:01',
             'updated_at' => '2021-10-25 20:01:01',
         ]);
         DB::table('stocks')->insert([
             'producto_id' => 3,
-            'cantidad' => 13,
+            'cantidad' => 10,
             'created_at' => '2021-10-25 20:01:01',
             'updated_at' => '2021-10-25 20:01:01',
         ]);

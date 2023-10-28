@@ -16,7 +16,7 @@ class UsuarioSeeder extends Seeder
         DB::table('usuarios')->insert([
             'nombre' => 'Juan',
             'email' => 'Perez@gmail.com',
-            'contrasena' => '123451',
+            'contrasena' => '$2y$10$iUH1UkizBiLOl3w42x5Pweu/k9v6ygSTyjKq1ti0qcUWs0roAZ6j2',
             'telefono' => '123456789',
             'domicilio' => 'Calle 123',
             'created_at' => '2021-10-25 00:00:00',
